@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#0d2000"/><circle cx="35" cy="28" r="12" fill="#228b22"/><circle cx="65" cy="28" r="12" fill="#228b22"/><circle cx="35" cy="28" r="8" fill="white" opacity="0.9"/><circle cx="65" cy="28" r="8" fill="white" opacity="0.9"/><circle cx="35" cy="28" r="5" fill="#0d2000"/><circle cx="65" cy="28" r="5" fill="#0d2000"/><ellipse cx="50" cy="52" rx="25" ry="20" fill="#228b22"/><path d="M38 62 Q50 72 62 62" stroke="#0d2000" stroke-width="2.5" fill="none"/><ellipse cx="50" cy="78" rx="20" ry="14" fill="#228b22"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#4a148c" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#220064" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <circle cx="50" cy="50" r="50" fill="url(#bg)" />
+  <path d="M30 82 Q28 95 30 100 L70 100 Q72 95 70 82 Q60 74 50 74 Q40 74 30 82Z" fill="#6a1b9a"/><circle cx="50" cy="45" r="26" fill="#8d6e63" /><polygon points="35,22 28,8 44,20" fill="#8d6e63"/><polygon points="65,22 72,8 56,20" fill="#8d6e63"/><circle cx="40" cy="44" r="10" fill="#fff" /><circle cx="60" cy="44" r="10" fill="#fff" /><circle cx="40" cy="44" r="7" fill="#ffeb3b" /><circle cx="60" cy="44" r="7" fill="#ffeb3b" /><circle cx="40" cy="44" r="4" fill="#000" /><circle cx="60" cy="44" r="4" fill="#000" /><circle cx="41" cy="43" r="1.2" fill="#fff" /><circle cx="61" cy="43" r="1.2" fill="#fff" /><polygon points="50,50 45,58 55,58" fill="#ff8f00"/><ellipse cx="50" cy="60" rx="12" ry="8" fill="#d7ccc8" opacity="0.6"/>
+</svg>

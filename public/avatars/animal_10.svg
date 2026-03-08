@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#1a1a1a"/><circle cx="33" cy="30" r="13" fill="#444444"/><circle cx="67" cy="30" r="13" fill="#444444"/><circle cx="33" cy="30" r="8" fill="#888888" opacity="0.5"/><circle cx="67" cy="30" r="8" fill="#888888" opacity="0.5"/><circle cx="50" cy="47" r="23" fill="#444444"/><ellipse cx="50" cy="53" rx="10" ry="7" fill="#888888" opacity="0.7"/><ellipse cx="43" cy="44" rx="5" ry="4" fill="#1a1a1a" opacity="0.6"/><ellipse cx="57" cy="44" rx="5" ry="4" fill="#1a1a1a" opacity="0.6"/><ellipse cx="50" cy="78" rx="20" ry="14" fill="#444444"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#212121" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <circle cx="50" cy="50" r="50" fill="url(#bg)" />
+  <path d="M30 82 Q28 95 30 100 L70 100 Q72 95 70 82 Q62 78 50 78 Q38 78 30 82Z" fill="#2c2c2c"/><ellipse cx="50" cy="48" rx="23" ry="22" fill="#1a1a1a" /><polygon points="30,30 25,12 42,28" fill="#1a1a1a"/><polygon points="70,30 75,12 58,28" fill="#1a1a1a"/><polygon points="31,29 27,15 40,28" fill="#ff80ab"/><polygon points="69,29 73,15 60,28" fill="#ff80ab"/><ellipse cx="40" cy="44" rx="5" ry="4" fill="#fff" /><ellipse cx="60" cy="44" rx="5" ry="4" fill="#fff" /><circle cx="40" cy="44" r="3" fill="#66bb6a" /><circle cx="60" cy="44" r="3" fill="#66bb6a" /><circle cx="40" cy="44" r="1.5" fill="#000" /><circle cx="60" cy="44" r="1.5" fill="#000" /><circle cx="41" cy="43" r="0.8" fill="#fff" /><circle cx="61" cy="43" r="0.8" fill="#fff" /><path d="M48 52 L50 54 L52 52 Q50 50 48 52Z" fill="#e91e63"/><line x1="26" y1="52" x2="43" y2="53" stroke="#666" stroke-width="1"/><line x1="57" y1="53" x2="74" y2="52" stroke="#666" stroke-width="1"/><line x1="26" y1="56" x2="43" y2="55" stroke="#666" stroke-width="1"/><line x1="57" y1="55" x2="74" y2="56" stroke="#666" stroke-width="1"/><path d="M46 55 Q50 59 54 55" fill="none" stroke="#555" stroke-width="1.5"/>
+</svg>

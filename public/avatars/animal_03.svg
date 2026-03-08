@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#0a1500"/><circle cx="50" cy="45" r="24" fill="#f5c518"/><polygon points="30,30 22,12 38,22" fill="#f5c518"/><polygon points="70,30 78,12 62,22" fill="#f5c518"/><polygon points="30,30 25,15 37,23" fill="#ff9900"/><polygon points="70,30 75,15 63,23" fill="#ff9900"/><ellipse cx="43" cy="43" rx="4" ry="4" fill="#0a1500" opacity="0.7"/><ellipse cx="57" cy="43" rx="4" ry="4" fill="#0a1500" opacity="0.7"/><ellipse cx="50" cy="50" rx="5" ry="3" fill="#ff9900"/><line x1="35" y1="49" x2="20" y2="46" stroke="#ff9900" stroke-width="1.5"/><line x1="35" y1="52" x2="20" y2="52" stroke="#ff9900" stroke-width="1.5"/><line x1="65" y1="49" x2="80" y2="46" stroke="#ff9900" stroke-width="1.5"/><line x1="65" y1="52" x2="80" y2="52" stroke="#ff9900" stroke-width="1.5"/><ellipse cx="50" cy="78" rx="20" ry="14" fill="#f5c518"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#bf360c" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#970e00" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <circle cx="50" cy="50" r="50" fill="url(#bg)" />
+  <path d="M30 82 Q28 95 30 100 L70 100 Q72 95 70 82 Q62 78 50 78 Q38 78 30 82Z" fill="#e64a19"/><ellipse cx="50" cy="48" rx="23" ry="22" fill="#ff7043" /><polygon points="30,30 24,10 44,28" fill="#ff7043"/><polygon points="70,30 76,10 56,28" fill="#ff7043"/><polygon points="31,29 26,14 42,28" fill="#fff")/><polygon points="69,29 74,14 58,28" fill="#fff"/><ellipse cx="50" cy="54" rx="13" ry="10" fill="#fff"/><ellipse cx="40" cy="44" rx="5" ry="4" fill="#fff" /><ellipse cx="60" cy="44" rx="5" ry="4" fill="#fff" /><circle cx="40" cy="44" r="3" fill="#f57f17" /><circle cx="60" cy="44" r="3" fill="#f57f17" /><circle cx="40" cy="44" r="1.5" fill="#000" /><circle cx="60" cy="44" r="1.5" fill="#000" /><circle cx="41" cy="43" r="0.8" fill="#fff" /><circle cx="61" cy="43" r="0.8" fill="#fff" /><path d="M47 51 L50 54 L53 51 Q50 49 47 51Z" fill="#1a1a1a"/><line x1="26" y1="52" x2="43" y2="53" stroke="#888" stroke-width="1"/><line x1="57" y1="53" x2="74" y2="52" stroke="#888" stroke-width="1"/><path d="M46 55 Q50 60 54 55" fill="none" stroke="#8d6e63" stroke-width="1.5"/>
+</svg>

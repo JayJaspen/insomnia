@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#150015"/><ellipse cx="36" cy="22" rx="8" ry="22" fill="#800080"/><ellipse cx="64" cy="22" rx="8" ry="22" fill="#800080"/><ellipse cx="36" cy="22" rx="4" ry="18" fill="#cc66cc" opacity="0.6"/><ellipse cx="64" cy="22" rx="4" ry="18" fill="#cc66cc" opacity="0.6"/><circle cx="50" cy="48" r="22" fill="#800080"/><ellipse cx="43" cy="46" rx="5" ry="4" fill="#150015" opacity="0.6"/><ellipse cx="57" cy="46" rx="5" ry="4" fill="#150015" opacity="0.6"/><ellipse cx="50" cy="53" rx="5" ry="3" fill="#cc66cc" opacity="0.8"/><ellipse cx="50" cy="78" rx="20" ry="14" fill="#800080"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#37474f" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0f1f27" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <circle cx="50" cy="50" r="50" fill="url(#bg)" />
+  <path d="M30 82 Q28 95 30 100 L70 100 Q72 95 70 82 Q62 78 50 78 Q38 78 30 82Z" fill="#546e7a"/><ellipse cx="50" cy="49" rx="24" ry="23" fill="#78909c" /><polygon points="30,28 24,10 43,26" fill="#78909c"/><polygon points="70,28 76,10 57,26" fill="#78909c"/><polygon points="31,27 26,13 41,26" fill="#f8bbd0"/><polygon points="69,27 74,13 59,26" fill="#f8bbd0"/><ellipse cx="50" cy="56" rx="13" ry="9" fill="#b0bec5" /><ellipse cx="40" cy="43" rx="5" ry="4" fill="#fff" /><ellipse cx="60" cy="43" rx="5" ry="4" fill="#fff" /><circle cx="40" cy="43" r="3" fill="#f57f17" /><circle cx="60" cy="43" r="3" fill="#f57f17" /><circle cx="40" cy="43" r="1.5" fill="#000" /><circle cx="60" cy="43" r="1.5" fill="#000" /><circle cx="41" cy="42" r="0.8" fill="#fff" /><circle cx="61" cy="42" r="0.8" fill="#fff" /><ellipse cx="50" cy="52" rx="5" ry="4" fill="#1a1a1a" /><path d="M43 58 Q50 64 57 58" fill="none" stroke="#546e7a" stroke-width="2"/><line x1="26" y1="53" x2="43" y2="54" stroke="#aaa" stroke-width="1"/><line x1="57" y1="54" x2="74" y2="53" stroke="#aaa" stroke-width="1"/>
+</svg>

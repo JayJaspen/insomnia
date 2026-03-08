@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#200a0a"/><polygon points="50,15 32,35 50,30 68,35" fill="#cc4444"/><polygon points="32,35 22,20 38,30" fill="#cc4444"/><polygon points="68,35 78,20 62,30" fill="#cc4444"/><circle cx="50" cy="46" r="22" fill="#cc4444"/><polygon points="30,52 50,40 70,52 50,65" fill="#ff8888"/><ellipse cx="43" cy="43" rx="5" ry="4" fill="#200a0a" opacity="0.7"/><ellipse cx="57" cy="43" rx="5" ry="4" fill="#200a0a" opacity="0.7"/><ellipse cx="50" cy="78" rx="20" ry="14" fill="#cc4444"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#33691e" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0b4100" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <circle cx="50" cy="50" r="50" fill="url(#bg)" />
+  <path d="M30 82 Q28 95 30 100 L70 100 Q72 95 70 82 Q62 78 50 78 Q38 78 30 82Z" fill="#558b2f"/><ellipse cx="50" cy="50" rx="22" ry="21" fill="#a1887f" /><path d="M32 28 Q28 18 24 10 M28 18 Q22 16 18 18 M32 28 Q30 20 26 14 M68 28 Q72 18 76 10 M72 18 Q78 16 82 18 M68 28 Q70 20 74 14" stroke="#6d4c41" stroke-width="2.5" fill="none" stroke-linecap="round"/><ellipse cx="29" cy="44" rx="6" ry="10" fill="#a1887f" /><ellipse cx="71" cy="44" rx="6" ry="10" fill="#a1887f" /><ellipse cx="50" cy="56" rx="12" ry="9" fill="#bcaaa4" /><ellipse cx="40" cy="44" rx="5" ry="4.5" fill="#fff" /><ellipse cx="60" cy="44" rx="5" ry="4.5" fill="#fff" /><circle cx="40" cy="44" r="3" fill="#5d4037" /><circle cx="60" cy="44" r="3" fill="#5d4037" /><circle cx="40" cy="44" r="1.5" fill="#000" /><circle cx="60" cy="44" r="1.5" fill="#000" /><circle cx="41" cy="43" r="0.8" fill="#fff" /><circle cx="61" cy="43" r="0.8" fill="#fff" /><ellipse cx="50" cy="52" rx="4" ry="3" fill="#3e2723" /><path d="M44 57 Q50 62 56 57" fill="none" stroke="#795548" stroke-width="2"/><circle cx="38" cy="58" r="3" fill="#d7ccc8" opacity="0.5"/><circle cx="46" cy="60" r="2" fill="#d7ccc8" opacity="0.5"/><circle cx="54" cy="60" r="2" fill="#d7ccc8" opacity="0.5"/><circle cx="62" cy="58" r="3" fill="#d7ccc8" opacity="0.5"/>
+</svg>

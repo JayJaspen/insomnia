@@ -3,6 +3,7 @@ import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
+import { isServiceOpen } from '@/lib/utils'
 
 function LoginForm() {
   const router = useRouter()
@@ -36,8 +37,16 @@ function LoginForm() {
         setLoading(false)
         return
       }
+      // Admin loggar alltid in, dygnet runt
       if (profile?.role === 'admin') {
         window.location.href = '/admin'
+        return
+      }
+      // Vanliga användare – kontrollera öppettider (22:00–06:00)
+      if (!isServiceOpen()) {
+        await supabase.auth.signOut()
+        setError('Insomnia är stängt just nu. Välkommen tillbaka kl. 22:00! 🌙')
+        setLoading(false)
         return
       }
     }
