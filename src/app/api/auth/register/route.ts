@@ -1,8 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/server'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function POST(req: NextRequest) {
   try {
+    // Rate limit: max 5 registreringar per IP per timme
+    const ip = getClientIp(req)
+    const rl = rateLimit(`reg:${ip}`, 5, 60 * 60_000)
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: 'För många försök. Prova igen om en timme.' },
+        { status: 429 },
+      )
+    }
+
     const body = await req.json()
     const { fullName, displayName, gender, county, city, birthYear, email, password, avatarId } = body
 
@@ -16,21 +27,28 @@ export async function POST(req: NextRequest) {
     if (password.length < 8) {
       return NextResponse.json({ error: 'Lösenordet måste vara minst 8 tecken.' }, { status: 400 })
     }
+    // Ålderskontroll – måste ha fyllt 18
+    const currentYear = new Date().getFullYear()
+    if (!birthYear || currentYear - birthYear < 18 || currentYear - birthYear > 110) {
+      return NextResponse.json({ error: 'Du måste vara minst 18 år.' }, { status: 400 })
+    }
+    // E-post format
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: 'Ogiltig e-postadress.' }, { status: 400 })
+    }
 
     const supabase = createAdminClient()
 
-    // Skapa auth-användare
     const { data: authData, error: authError } = await supabase.auth.admin.createUser({
       email,
       password,
-      email_confirm: true,  // Ingen e-postverifiering krävs
+      email_confirm: true,
     })
 
     if (authError || !authData.user) {
       return NextResponse.json({ error: authError?.message ?? 'Kunde inte skapa konto.' }, { status: 400 })
     }
 
-    // Skapa profil
     const { error: profileError } = await supabase.from('users').insert({
       id: authData.user.id,
       full_name: fullName,
@@ -44,18 +62,11 @@ export async function POST(req: NextRequest) {
     })
 
     if (profileError) {
-      // Rensa auth-användaren om profilen misslyckades
       await supabase.auth.admin.deleteUser(authData.user.id)
       if (profileError.code === '23505') {
         return NextResponse.json({ error: 'Visningsnamnet är redan taget.' }, { status: 409 })
       }
       return NextResponse.json({ error: profileError.message }, { status: 500 })
-    }
-
-    // Logga in användaren direkt
-    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
-    if (signInError) {
-      return NextResponse.json({ error: 'Konto skapat! Logga in manuellt.' }, { status: 201 })
     }
 
     return NextResponse.json({ success: true }, { status: 201 })

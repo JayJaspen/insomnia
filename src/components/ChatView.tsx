@@ -135,10 +135,30 @@ export default function ChatView({ currentUser, initialRooms }: Props) {
   async function sendImage(e: React.ChangeEvent<HTMLInputElement>) {
     if (!activeRoom || !e.target.files?.[0]) return
     const file = e.target.files[0]
-    const ext = file.name.split('.').pop()
+
+    // Validering – MIME-typ och filstorlek (max 8 MB)
+    const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+    const MAX_SIZE_MB = 8
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      alert('Endast JPEG, PNG, GIF och WebP är tillåtna.')
+      return
+    }
+    if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+      alert(`Bilden är för stor. Max ${MAX_SIZE_MB} MB.`)
+      return
+    }
+
+    // Använd alltid korrekt extension baserat på MIME (ej filnamn)
+    const EXT_MAP: Record<string, string> = {
+      'image/jpeg': 'jpg', 'image/png': 'png',
+      'image/gif': 'gif',  'image/webp': 'webp',
+    }
+    const ext = EXT_MAP[file.type]
     const path = `${currentUser.id}/${Date.now()}.${ext}`
 
-    const { error } = await supabase.storage.from('chat-images').upload(path, file)
+    const { error } = await supabase.storage.from('chat-images').upload(path, file, {
+      contentType: file.type,
+    })
     if (error) return alert('Uppladdning misslyckades.')
 
     const { data: msg } = await supabase.from('messages').insert({

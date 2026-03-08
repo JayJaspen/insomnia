@@ -228,6 +228,10 @@ export default function HomePage() {
       {/* Fotnot */}
       <footer className="absolute bottom-2 text-text-muted text-xs text-center z-10 w-full">
         insomnia.nu &copy; {new Date().getFullYear()} &nbsp;·&nbsp; Öppet 22:00–06:00
+        &nbsp;·&nbsp;
+        <Link href="/privacy" className="hover:text-accent-light transition-colors">
+          Integritetspolicy
+        </Link>
       </footer>
     </div>
   )

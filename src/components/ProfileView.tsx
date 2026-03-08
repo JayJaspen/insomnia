@@ -1,14 +1,18 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { COUNTIES, CITIES_BY_COUNTY, AVATARS, AVATAR_LABELS } from '@/lib/constants'
-import { Check, X, UserMinus } from 'lucide-react'
+import { Check, X, UserMinus, Trash2, AlertTriangle } from 'lucide-react'
 
 export default function ProfileView({ profile, friends, pendingRequests, userId }: any) {
   const router = useRouter()
   const supabase = createClient()
   const [editing, setEditing] = useState(false)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const [deleteLoading, setDeleteLoading] = useState(false)
+  const [deleteInput, setDeleteInput] = useState('')
   const [form, setForm] = useState({
     displayName: profile?.display_name ?? '',
     county: profile?.county ?? '',
@@ -53,6 +57,17 @@ export default function ProfileView({ profile, friends, pendingRequests, userId 
   async function removeFriend(id: string) {
     await supabase.from('friendships').delete().eq('id', id)
     router.refresh()
+  }
+
+  async function deleteAccount() {
+    setDeleteLoading(true)
+    const res = await fetch('/api/account/delete', { method: 'DELETE' })
+    if (res.ok) {
+      window.location.href = '/'
+    } else {
+      alert('Något gick fel. Försök igen eller kontakta info@insomnia.nu')
+      setDeleteLoading(false)
+    }
   }
 
   return (
@@ -184,6 +199,61 @@ export default function ProfileView({ profile, friends, pendingRequests, userId 
                 </div>
               )
             })}
+          </div>
+        )}
+      </div>
+      {/* ── GDPR / Kontoinställningar ── */}
+      <div className="glass p-6">
+        <h3 className="text-text-primary font-semibold mb-1 flex items-center gap-2">
+          <AlertTriangle size={16} className="text-warning" />
+          Integritet & konto
+        </h3>
+        <p className="text-text-muted text-xs mb-4">
+          Läs vår{' '}
+          <Link href="/privacy" className="text-accent-light hover:underline">
+            integritetspolicy
+          </Link>{' '}
+          för information om hur vi hanterar dina uppgifter.
+        </p>
+
+        {!showDeleteConfirm ? (
+          <button
+            onClick={() => setShowDeleteConfirm(true)}
+            className="flex items-center gap-2 text-danger border border-danger/30
+                       hover:bg-danger/10 transition-colors px-4 py-2 rounded-xl text-sm"
+          >
+            <Trash2 size={15} /> Radera mitt konto
+          </button>
+        ) : (
+          <div className="bg-danger/5 border border-danger/30 rounded-xl p-4 space-y-3">
+            <p className="text-danger text-sm font-medium">⚠ Detta går inte att ångra</p>
+            <p className="text-text-muted text-xs leading-relaxed">
+              Alla dina uppgifter, chattar, bilder och vänskapsrelationer raderas permanent.
+              Skriv <strong className="text-text-primary">RADERA</strong> för att bekräfta.
+            </p>
+            <input
+              className="input text-sm"
+              placeholder="Skriv RADERA för att bekräfta"
+              value={deleteInput}
+              onChange={e => setDeleteInput(e.target.value)}
+            />
+            <div className="flex gap-2">
+              <button
+                className="btn-secondary flex-1 py-2 text-sm"
+                onClick={() => { setShowDeleteConfirm(false); setDeleteInput('') }}
+              >
+                Avbryt
+              </button>
+              <button
+                className="flex-1 py-2 rounded-xl text-sm font-medium bg-danger/20 text-danger
+                           border border-danger/40 hover:bg-danger/30 transition-colors
+                           disabled:opacity-40 disabled:cursor-not-allowed"
+                disabled={deleteInput !== 'RADERA' || deleteLoading}
+                onClick={deleteAccount}
+              >
+                {deleteLoading ? 'Raderar...' : 'Radera permanent'}
+              </button>
+            </div>
           </div>
         )}
       </div>
