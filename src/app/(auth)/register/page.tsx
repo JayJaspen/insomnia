@@ -134,11 +134,15 @@ export default function RegisterPage() {
               <label className="text-text-muted text-sm mb-1 block">Bekräfta lösenord</label>
               <input className={inputClass} type="password" placeholder="••••••••"
                 value={form.confirmPassword} onChange={e => set('confirmPassword', e.target.value)} />
+              {form.confirmPassword && form.password !== form.confirmPassword && (
+                <p className="text-danger text-xs mt-1">Lösenorden matchar inte.</p>
+              )}
             </div>
             <button className="btn-primary w-full mt-2"
               disabled={!form.fullName || !form.displayName || form.displayName.length < 3
                         || !form.gender || !form.birthYear || !form.email
-                        || form.password.length < 8 || !form.confirmPassword}
+                        || form.password.length < 8 || !form.confirmPassword
+                        || form.password !== form.confirmPassword}
               onClick={() => setStep(2)}>
               Nästa →
             </button>

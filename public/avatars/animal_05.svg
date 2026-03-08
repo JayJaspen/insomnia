@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="50" fill="#1A1A2E"/>
-  <circle cx="50" cy="38" r="18" fill="#533483"/>
-  <ellipse cx="50" cy="80" rx="25" ry="20" fill="#533483"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#1a1a2e"/><circle cx="50" cy="44" r="23" fill="#d4a5a5"/><ellipse cx="30" cy="42" rx="10" ry="16" fill="#d4a5a5"/><ellipse cx="70" cy="42" rx="10" ry="16" fill="#d4a5a5"/><ellipse cx="43" cy="43" rx="5" ry="4" fill="#1a1a2e" opacity="0.6"/><ellipse cx="57" cy="43" rx="5" ry="4" fill="#1a1a2e" opacity="0.6"/><ellipse cx="50" cy="52" rx="8" ry="5" fill="#ffcccb"/><ellipse cx="50" cy="78" rx="20" ry="14" fill="#d4a5a5"/></svg>
