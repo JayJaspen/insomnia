@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { createClient } from '@/lib/supabase/client'
 import { COUNTIES, CITIES_BY_COUNTY, GENDERS, AVATARS, AVATAR_LABELS } from '@/lib/constants'
 
 const CURRENT_YEAR = new Date().getFullYear()
@@ -58,7 +59,10 @@ export default function RegisterPage() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error ?? 'Registrering misslyckades.')
-      router.push('/mood')
+      // Logga in client-side så cookies sätts korrekt i webbläsaren
+      const supabase = createClient()
+      await supabase.auth.signInWithPassword({ email: form.email, password: form.password })
+      window.location.href = '/mood'
     } catch (e: any) {
       setError(e.message)
     } finally {

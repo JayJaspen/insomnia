@@ -22,11 +22,26 @@ function LoginForm() {
     const { error: err } = await supabase.auth.signInWithPassword({ email, password })
     if (err) {
       setError('Fel e-postadress eller lösenord.')
-    } else {
-      router.push(next)
-      router.refresh()
+      setLoading(false)
+      return
     }
-    setLoading(false)
+    // Kolla roll och spärrstatus
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) {
+      const { data: profile } = await supabase
+        .from('users').select('role, is_blocked').eq('id', user.id).single()
+      if (profile?.is_blocked) {
+        await supabase.auth.signOut()
+        setError('Ditt konto har spärrats. Kontakta admin vid frågor.')
+        setLoading(false)
+        return
+      }
+      if (profile?.role === 'admin') {
+        window.location.href = '/admin'
+        return
+      }
+    }
+    window.location.href = '/mood'
   }
 
   return (

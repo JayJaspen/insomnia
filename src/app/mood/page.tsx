@@ -20,8 +20,16 @@ export default function MoodPage() {
         mood: selected,
         session_date: new Date().toISOString().split('T')[0],
       })
+      const { data: profile } = await supabase
+        .from('users').select('role').eq('id', user.id).single()
+      if (profile?.role === 'admin') {
+        window.location.href = '/admin'
+      } else {
+        window.location.href = '/chat'
+      }
+    } else {
+      window.location.href = '/login'
     }
-    router.push('/app/chat')
   }
 
   return (
