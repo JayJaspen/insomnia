@@ -57,14 +57,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Root — redirect to chat if logged in, otherwise to login
-  if (pathname === '/') {
-    if (user) {
-      return NextResponse.redirect(new URL('/chat', request.url))
-    } else {
-      return NextResponse.redirect(new URL('/login', request.url))
-    }
-  }
+  // Root '/' — visa alltid startsidan, ingen redirect
 
   return supabaseResponse
 }
