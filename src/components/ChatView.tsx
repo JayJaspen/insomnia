@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Users, Plus, Send, Image as ImageIcon, X, Flag } from 'lucide-react'
 import { calcAge } from '@/lib/utils'
+import AdBanner from '@/components/AdBanner'
 
 const MOODS: Record<string, string> = {
   sleepy:'😴', happy:'😊', melancholic:'🌙', thoughtful:'🤔', restless:'⚡',
@@ -205,8 +206,10 @@ export default function ChatView({ currentUser, initialRooms }: Props) {
   }
 
   async function startPrivateChat(userId: string) {
+    if (!selectedUser) return
+    // Auto-namn: den andra personens visningsnamn (syns bara för de inbjudna)
     const { data: room } = await supabase.from('chat_rooms').insert({
-      name: null,
+      name: selectedUser.display_name,
       type: 'private',
       created_by: currentUser.id,
     }).select().single()
@@ -298,6 +301,11 @@ export default function ChatView({ currentUser, initialRooms }: Props) {
               </button>
             ))}
           </div>
+        </div>
+
+        {/* CPM-banner i sidebaren */}
+        <div className="p-3 border-t border-accent/10 flex justify-center">
+          <AdBanner slot="chat-sidebar" size="rectangle" className="!w-full !h-16 !max-w-none" />
         </div>
       </aside>
 

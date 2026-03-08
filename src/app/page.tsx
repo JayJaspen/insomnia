@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { isServiceOpen, secondsUntilOpen } from '@/lib/utils'
+import AdBanner from '@/components/AdBanner'
 
 function Stars() {
   return (
@@ -146,35 +147,86 @@ export default function HomePage() {
         )}
       </div>
 
-      {/* SEO-innehåll – synligt för Google, diskret för besökare */}
+      {/* CPM-banner – toppen */}
+      <div className="relative z-10 mt-10 flex justify-center">
+        <AdBanner slot="homepage-top" size="leaderboard" />
+      </div>
+
+      {/* ── Så fungerar Insomnia ── */}
       <section
-        className="relative z-10 max-w-2xl mx-auto mt-16 mb-24 px-4 text-center"
-        aria-label="Om Insomnia.nu"
+        className="relative z-10 max-w-2xl mx-auto mt-10 mb-4 px-4"
+        aria-label="Så fungerar Insomnia"
       >
-        <div className="glass p-6 rounded-2xl space-y-4 text-text-muted text-sm leading-relaxed">
-          <h2 className="text-text-primary font-semibold text-base">
-            Kan du inte sova? Du är inte ensam.
+        <div className="glass p-7 rounded-2xl space-y-5">
+          <h2 className="text-text-primary font-bold text-xl text-center">
+            Så fungerar Insomnia
           </h2>
-          <p>
-            Insomnia.nu är en mötesplats för dig som lider av <strong className="text-text-primary">sömnproblem</strong>,{' '}
-            <strong className="text-text-primary">sömnlöshet</strong> eller bara inte kan somna på natten.
-            Här finns alltid någon vaken att chatta med — anonymt och utan krav.
-          </p>
-          <p>
-            Har du <strong className="text-text-primary">problem med att somna</strong>? Vaknar du mitt i natten och
-            hittar ingenting att göra? Lider du av <strong className="text-text-primary">insomni</strong> eller{' '}
-            <strong className="text-text-primary">sömnsvårigheter</strong>? Chatten är öppen varje natt kl. 22:00–06:00
-            — precis när det är som svårast att sova.
-          </p>
-          <p>
-            Oavsett om du är rastlös, ängslig eller bara ensam på natten — välkommen till Sveriges
-            nattliga mötesplats för nattugglor.
+
+          {/* Funktionskort */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="bg-bg-card/60 rounded-xl p-4 flex gap-3 items-start">
+              <span className="text-2xl flex-shrink-0">🌙</span>
+              <div>
+                <p className="text-text-primary text-sm font-medium mb-1">Mötesplats för nattugglor</p>
+                <p className="text-text-muted text-xs leading-relaxed">
+                  Insomnia är till för dig som av någon anledning inte kan sova.
+                  Skapa nya bekantskaper och hitta någon att prata med.
+                </p>
+              </div>
+            </div>
+            <div className="bg-bg-card/60 rounded-xl p-4 flex gap-3 items-start">
+              <span className="text-2xl flex-shrink-0">💬</span>
+              <div>
+                <p className="text-text-primary text-sm font-medium mb-1">Privat eller grupp</p>
+                <p className="text-text-muted text-xs leading-relaxed">
+                  Chatta privat med en person eller skapa gruppchattar med
+                  olika ämnen öppna för alla inloggade.
+                </p>
+              </div>
+            </div>
+            <div className="bg-bg-card/60 rounded-xl p-4 flex gap-3 items-start">
+              <span className="text-2xl flex-shrink-0">🖼️</span>
+              <div>
+                <p className="text-text-primary text-sm font-medium mb-1">Dela bilder & umgås</p>
+                <p className="text-text-muted text-xs leading-relaxed">
+                  Du kan dela bilder i chatten och umgås precis som du vill —
+                  anonymt och utan krav.
+                </p>
+              </div>
+            </div>
+            <div className="bg-bg-card/60 rounded-xl p-4 flex gap-3 items-start">
+              <span className="text-2xl flex-shrink-0">🔒</span>
+              <div>
+                <p className="text-text-primary text-sm font-medium mb-1">Raderas kl. 06:00</p>
+                <p className="text-text-muted text-xs leading-relaxed">
+                  När tjänsten stänger varje morgon raderas alla chattar och bilder.
+                  Dina bekantskaper finns alltid kvar.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Kontaktinfo */}
+          <p className="text-text-muted text-xs text-center leading-relaxed border-t border-accent/10 pt-4">
+            Har du frågor eller funderingar är du välkommen att höra av dig till oss på{' '}
+            <a
+              href="mailto:info@insomnia.nu"
+              className="text-accent-light hover:underline"
+            >
+              info@insomnia.nu
+            </a>
+            .
           </p>
         </div>
       </section>
 
+      {/* CPM-banner – botten */}
+      <div className="relative z-10 mb-16 flex justify-center px-4">
+        <AdBanner slot="homepage-bottom" size="leaderboard" />
+      </div>
+
       {/* Fotnot */}
-      <footer className="absolute bottom-6 text-text-muted text-xs text-center z-10">
+      <footer className="absolute bottom-2 text-text-muted text-xs text-center z-10 w-full">
         insomnia.nu &copy; {new Date().getFullYear()} &nbsp;·&nbsp; Öppet 22:00–06:00
       </footer>
     </div>
