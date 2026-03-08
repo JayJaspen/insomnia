@@ -27,7 +27,7 @@ export default function AdminNav() {
           {navLink('/admin/reports', <Flag size={15}/>, 'Anmälningar')}
         </nav>
         <button className="text-text-muted hover:text-danger transition-colors"
-          onClick={async () => { await supabase.auth.signOut(); router.push('/') }}>
+          onClick={async () => { await supabase.auth.signOut(); window.location.href = '/' }}>
           <LogOut size={18}/>
         </button>
       </div>

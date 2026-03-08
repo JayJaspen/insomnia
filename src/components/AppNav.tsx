@@ -23,7 +23,7 @@ export default function AppNav({ profile, userId }: Props) {
   async function signOut() {
     const supabase = createClient()
     await supabase.auth.signOut()
-    router.push('/')
+    window.location.href = '/'
   }
 
   const navItem = (href: string, icon: React.ReactNode, label: string) => (

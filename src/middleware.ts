@@ -42,6 +42,14 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // Admin route — only admins can access /admin
+  if (pathname.startsWith('/admin')) {
+    if (!user) {
+      return NextResponse.redirect(new URL('/login', request.url))
+    }
+    // Role check happens inside the AdminPage component itself
+  }
+
   // Auth routes — redirect to chat if already logged in
   if (pathname === '/login' || pathname === '/register') {
     if (user) {
