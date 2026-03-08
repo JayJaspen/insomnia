@@ -62,7 +62,8 @@ export async function middleware(request: NextRequest) {
   }
 
   // ── App-routes: kräver inloggning + öppettid ─────────────────
-  if (pathname.startsWith('/app')) {
+  // Routegruppen (app) skapar URL:erna /chat och /profile
+  if (pathname.startsWith('/chat') || pathname.startsWith('/profile')) {
     if (!user) {
       return NextResponse.redirect(new URL('/login?next=' + pathname, request.url))
     }
@@ -97,7 +98,7 @@ export async function middleware(request: NextRequest) {
       if (profile?.role === 'admin') {
         return NextResponse.redirect(new URL('/admin', request.url))
       }
-      return NextResponse.redirect(new URL('/app/chat', request.url))
+      return NextResponse.redirect(new URL('/chat', request.url))
     }
   }
 
