@@ -179,11 +179,17 @@ export default function UsersView({ users }: { users: any[] }) {
                 className="w-16 h-16 rounded-full bg-bg-card border-2 border-accent-light flex-shrink-0"
               />
               <div className="flex-1 min-w-0">
-                <h2 className="text-text-primary font-bold text-lg truncate">{detail.display_name}</h2>
+                <p className="text-text-muted text-xs mb-0.5">Visningsnamn</p>
+                <h2 className="text-text-primary font-bold text-lg truncate leading-tight">
+                  {detail.display_name}
+                </h2>
                 {detail.full_name && (
-                  <p className="text-text-muted text-sm truncate">{detail.full_name}</p>
+                  <div className="mt-1">
+                    <p className="text-text-muted text-xs">Riktigt namn</p>
+                    <p className="text-text-primary text-sm font-medium truncate">{detail.full_name}</p>
+                  </div>
                 )}
-                <div className="flex items-center gap-2 mt-1">
+                <div className="flex items-center gap-2 mt-1.5">
                   {detail.role === 'admin' ? (
                     <span className="text-xs bg-accent-light/20 text-accent-light px-2 py-0.5 rounded-full">Admin</span>
                   ) : detail.is_blocked ? (
@@ -204,6 +210,15 @@ export default function UsersView({ users }: { users: any[] }) {
 
             {/* Detaljrader */}
             <div className="p-6 space-y-0">
+              <Row label="E-post" value={
+                detail.email
+                  ? <a href={`mailto:${detail.email}`}
+                       className="text-accent-light hover:underline break-all">
+                      {detail.email}
+                    </a>
+                  : <span className="text-text-muted italic">Ej tillgänglig</span>
+              } />
+              <Row label="Riktigt namn"  value={detail.full_name ?? '–'} />
               <Row label="Kön"           value={GENDERS[detail.gender]} />
               <Row label="Ålder"         value={`${calcAge(detail.birth_year)} år (födelseår ${detail.birth_year})`} />
               <Row label="Stad"          value={detail.city} />
