@@ -50,10 +50,10 @@ export async function middleware(request: NextRequest) {
     // Role check happens inside the AdminPage component itself
   }
 
-  // Auth routes — redirect to chat if already logged in
+  // Auth routes — redan inloggad, skicka till mood (som sedan kollar roll)
   if (pathname === '/login' || pathname === '/register') {
     if (user) {
-      return NextResponse.redirect(new URL('/chat', request.url))
+      return NextResponse.redirect(new URL('/mood', request.url))
     }
   }
 

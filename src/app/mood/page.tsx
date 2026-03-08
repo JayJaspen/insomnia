@@ -1,13 +1,26 @@
 'use client'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { MOODS } from '@/lib/constants'
 import { createClient } from '@/lib/supabase/client'
 
 export default function MoodPage() {
-  const router = useRouter()
   const [selected, setSelected] = useState('')
   const [loading, setLoading] = useState(false)
+
+  // Admin ska aldrig hamna här — skicka direkt till /admin
+  useEffect(() => {
+    async function checkRole() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) { window.location.href = '/login'; return }
+      const { data: profile } = await supabase
+        .from('users').select('role').eq('id', user.id).single()
+      if (profile?.role === 'admin') {
+        window.location.href = '/admin'
+      }
+    }
+    checkRole()
+  }, [])
 
   async function handleContinue() {
     if (!selected) return

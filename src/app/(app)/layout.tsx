@@ -16,6 +16,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     .limit(1, { referencedTable: 'mood_log' })
     .single()
 
+  // Admin ska aldrig se användar-layouten
+  if (profile?.role === 'admin') redirect('/admin')
+
   return (
     <div className="min-h-screen flex flex-col">
       <AppNav profile={profile} userId={user.id} />
