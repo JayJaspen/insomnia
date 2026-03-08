@@ -146,6 +146,33 @@ export default function HomePage() {
         )}
       </div>
 
+      {/* SEO-innehåll – synligt för Google, diskret för besökare */}
+      <section
+        className="relative z-10 max-w-2xl mx-auto mt-16 mb-24 px-4 text-center"
+        aria-label="Om Insomnia.nu"
+      >
+        <div className="glass p-6 rounded-2xl space-y-4 text-text-muted text-sm leading-relaxed">
+          <h2 className="text-text-primary font-semibold text-base">
+            Kan du inte sova? Du är inte ensam.
+          </h2>
+          <p>
+            Insomnia.nu är en mötesplats för dig som lider av <strong className="text-text-primary">sömnproblem</strong>,{' '}
+            <strong className="text-text-primary">sömnlöshet</strong> eller bara inte kan somna på natten.
+            Här finns alltid någon vaken att chatta med — anonymt och utan krav.
+          </p>
+          <p>
+            Har du <strong className="text-text-primary">problem med att somna</strong>? Vaknar du mitt i natten och
+            hittar ingenting att göra? Lider du av <strong className="text-text-primary">insomni</strong> eller{' '}
+            <strong className="text-text-primary">sömnsvårigheter</strong>? Chatten är öppen varje natt kl. 22:00–06:00
+            — precis när det är som svårast att sova.
+          </p>
+          <p>
+            Oavsett om du är rastlös, ängslig eller bara ensam på natten — välkommen till Sveriges
+            nattliga mötesplats för nattugglor.
+          </p>
+        </div>
+      </section>
+
       {/* Fotnot */}
       <footer className="absolute bottom-6 text-text-muted text-xs text-center z-10">
         insomnia.nu &copy; {new Date().getFullYear()} &nbsp;·&nbsp; Öppet 22:00–06:00
