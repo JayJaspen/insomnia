@@ -10,7 +10,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   const { data: profile } = await supabase
     .from('users')
-    .select('display_name, avatar_id, mood_log(mood)')
+    .select('display_name, avatar_id, role, mood_log(mood)')
     .eq('id', user.id)
     .order('created_at', { referencedTable: 'mood_log', ascending: false })
     .limit(1, { referencedTable: 'mood_log' })

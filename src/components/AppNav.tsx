@@ -1,11 +1,11 @@
 'use client'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { MessageSquare, User, LogOut } from 'lucide-react'
+import { MessageSquare, User, LogOut, Settings } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 
 interface Props {
-  profile: { display_name: string; avatar_id: string; mood_log?: { mood: string }[] } | null
+  profile: { display_name: string; avatar_id: string; role?: string; mood_log?: { mood: string }[] } | null
   userId: string
 }
 
@@ -50,8 +50,9 @@ export default function AppNav({ profile, userId }: Props) {
 
         {/* Nav tabs */}
         <nav className="flex gap-1">
-          {navItem('/app/chat', <MessageSquare size={16} />, 'Chat')}
-          {navItem('/app/profile', <User size={16} />, 'Min sida')}
+          {navItem('/chat', <MessageSquare size={16} />, 'Chat')}
+          {navItem('/profile', <User size={16} />, 'Min sida')}
+          {profile?.role === 'admin' && navItem('/admin', <Settings size={16} />, 'Admin')}
         </nav>
 
         {/* User info */}
