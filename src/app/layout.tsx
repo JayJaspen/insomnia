@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import InstallBanner from '@/components/InstallBanner'
 
 export const metadata: Metadata = {
   title: 'Insomnia – Nattens Chatt',
@@ -36,6 +37,7 @@ export default function RootLayout({
       </head>
       <body className="bg-bg-primary text-text-primary min-h-screen">
         {children}
+        <InstallBanner />
         <script
           dangerouslySetInnerHTML={{
             __html: `
