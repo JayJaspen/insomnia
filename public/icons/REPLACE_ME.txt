@@ -1,0 +1,3 @@
+Ersätt dessa ikoner med riktiga PNG-filer (72, 96, 128, 144, 152, 192, 384, 512 px).
+Rekommenderat verktyg: https://realfavicongenerator.net
+Lägg dem i mappen public/icons/ med namnen icon-72.png, icon-96.png, etc.
