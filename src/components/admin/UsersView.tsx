@@ -11,15 +11,28 @@ export default function UsersView({ users }: { users: any[] }) {
   const supabase = createClient()
   const [gender, setGender] = useState('')
   const [county, setCounty] = useState('')
-  const [minAge, setMinAge] = useState('')
-  const [maxAge, setMaxAge] = useState('')
+  const [ageGroup, setAgeGroup] = useState('')
+
+  const AGE_GROUPS = [
+    { label: 'Alla åldrar', value: '' },
+    { label: '18–25 år',    value: '18-25',  min: 18, max: 25  },
+    { label: '26–35 år',    value: '26-35',  min: 26, max: 35  },
+    { label: '36–45 år',    value: '36-45',  min: 36, max: 45  },
+    { label: '46–55 år',    value: '46-55',  min: 46, max: 55  },
+    { label: '56–65 år',    value: '56-65',  min: 56, max: 65  },
+    { label: '65+ år',      value: '65+',    min: 66, max: 999 },
+  ]
 
   const filtered = users.filter(u => {
     const age = calcAge(u.birth_year)
     if (gender && u.gender !== gender) return false
     if (county && u.county !== county) return false
-    if (minAge && age < parseInt(minAge)) return false
-    if (maxAge && age > parseInt(maxAge)) return false
+    if (ageGroup) {
+      const group = AGE_GROUPS.find(g => g.value === ageGroup)
+      if (group && group.min !== undefined) {
+        if (age < group.min || age > group.max) return false
+      }
+    }
     return true
   })
 
@@ -54,12 +67,14 @@ export default function UsersView({ users }: { users: any[] }) {
           <option value="">Alla län</option>
           {COUNTIES.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
         </select>
-        <input className="input w-20 py-2" type="number" placeholder="Min ålder"
-          value={minAge} onChange={e => setMinAge(e.target.value)} />
-        <input className="input w-20 py-2" type="number" placeholder="Max ålder"
-          value={maxAge} onChange={e => setMaxAge(e.target.value)} />
+        <select className="input w-auto py-2"
+          value={ageGroup} onChange={e => setAgeGroup(e.target.value)}>
+          {AGE_GROUPS.map(g => (
+            <option key={g.value} value={g.value}>{g.label}</option>
+          ))}
+        </select>
         <button className="btn-secondary py-2 px-4"
-          onClick={() => { setGender(''); setCounty(''); setMinAge(''); setMaxAge('') }}>
+          onClick={() => { setGender(''); setCounty(''); setAgeGroup('') }}>
           Rensa filter
         </button>
       </div>
