@@ -50,7 +50,7 @@ export default function ChatView({ currentUser, initialRooms }: Props) {
     channel
       .on('presence', { event: 'sync' }, () => {
         const state = channel.presenceState()
-        const users = Object.values(state).flat() as OnlineUser[]
+        const users = Object.values(state).flat() as unknown as OnlineUser[]
         setOnlineUsers(users.filter(u => u.id !== currentUser.id))
       })
       .subscribe(async (status) => {
